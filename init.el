@@ -1,11 +1,14 @@
+;; load my theme
+
 (load-theme 'custom-dark t)
+
 (require 'package)
 
 ;; Add MELPA package archive
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Define a list of package names to install
-(setq package-list '(lsp-mode lsp-ui company yasnippet nyan-mode dashboard evil which-key))
+(setq package-list '(lsp-mode lsp-ui company yasnippet nyan-mode dashboard evil which-key magit amx))
 
 ;; Initialize package.el
 (package-initialize)
@@ -18,8 +21,6 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
-
-
 
 (require 'lsp-mode)
 (add-hook 'prog-mode-hook #'lsp-deferred)
@@ -44,6 +45,7 @@
 
 
 ;; evil configuration
+
 (evil-mode 1)
 ;; Optional configurations
 ;; Disable evil in specific modes (e.g., in the minibuffer)
@@ -58,6 +60,14 @@
 ;; If you use the "which-key" package, enable it with Evil integration:
 (require 'which-key)
 (which-key-mode)
+
+(require 'magit)
+
+;; Set the default directory for Magit status
+(setq magit-repository-directories '("~/projects"))
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
