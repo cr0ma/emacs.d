@@ -5,7 +5,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Define a list of package names to install
-(setq package-list '(lsp-mode lsp-ui company yasnippet nyan-mode dashboard))
+(setq package-list '(lsp-mode lsp-ui company yasnippet nyan-mode dashboard evil which-key))
 
 ;; Initialize package.el
 (package-initialize)
@@ -41,6 +41,23 @@
 
 (setq dashboard-startup-banner "/home/cr0ma/.emacs.d/banner.txt")
 (setq dashboard-center-content t)
+
+
+;; evil configuration
+(evil-mode 1)
+;; Optional configurations
+;; Disable evil in specific modes (e.g., in the minibuffer)
+(setq evil-disable-insert-state-bindings t)
+
+;; Use Emacs keybindings in the modes where Evil is disabled
+(setq evil-disable-insert-state-bindings nil)
+
+;; Enable some Vim keybindings in the buffer-list (switching between buffers)
+(setq evil-want-C-u-scroll t)
+
+;; If you use the "which-key" package, enable it with Evil integration:
+(require 'which-key)
+(which-key-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
